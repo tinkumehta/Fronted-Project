@@ -42,4 +42,8 @@
 !/var/package
 /var/package/*
 !/var/package/*.xml
-
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
