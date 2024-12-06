@@ -1,0 +1,19 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  
+}
+
+body{
+  background-color: rgb(88, 73, 73);
+  color: #fff;
+}
+button {
+  border: 1px solid black;
+  padding: 6px;
+  border-radius: 5px;
+  background-color: red;
+
+}
