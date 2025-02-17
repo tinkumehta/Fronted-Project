@@ -1,4 +1,4 @@
-import {Client, Account} from 'appwrite'
+import {Client, Account, ID} from 'appwrite'
 import conf from './conf';
 
 export const client = new Client();
@@ -10,3 +10,4 @@ client
 export const account = new Account(client);
 
 export {ID} from 'appwrite'
+

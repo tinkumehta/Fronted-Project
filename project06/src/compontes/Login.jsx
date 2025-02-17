@@ -83,7 +83,7 @@ const Login = () => {
                         
                         <button
                          type="button"
-                         onClick={() => register(email, password, name)} 
+                         onClick={() =>  register(email, password, name)} 
                         >Register</button>
                     </form>
                 </div>
