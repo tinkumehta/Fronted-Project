@@ -13,6 +13,7 @@
   "author": "Muskan",
   "license": "ISC",
   "dependencies": {
+    "cloudinary": "^2.5.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.10.1"
