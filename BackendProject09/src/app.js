@@ -23,6 +23,8 @@ import likeRouter from "./routes/like.router.js"
 import commentRouter from "./routes/comment.router.js"
 import videoRouter from "./routes/video.router.js"
 import dashboardRouter from "./routes/dashboard.router.js"
+import playlistRouter from "./routes/playlist.router.js"
+import subsciptionRouter from "./routes/subscription.router.js"
 
 
 // routes declaration
@@ -33,6 +35,8 @@ app.use("/api/v1/likes", likeRouter)
 app.use("/api/v1/comments", commentRouter)
 app.use("/api/v1/videos", videoRouter)
 app.use("/api/v1/dashboard", dashboardRouter)
+app.use("/api/v1/playlist", playlistRouter)
+app.use("/api/v1/subscriptions", subsciptionRouter)
 
 // http://localhost:8000/api/v1/users/register
 
