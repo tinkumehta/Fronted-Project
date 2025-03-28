@@ -3,10 +3,11 @@ import {ApiResponse} from "../utils/ApiResponse.js"
 import {asyncHandler} from "../utils/asyncHandler.js"
 import { User } from "../models/user.modles.js"
 import { Video } from "../models/video.modles.js"
+import { Comment } from "../models/comment.mdoels.js"
+import { Like } from "../models/like.mdoels.js"
 import mongoose, {isValidObjectId} from "mongoose"
 import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudinary.js"
-import { text } from "express"
-import { url } from "inspector"
+
 
 
 const getAllVideos = asyncHandler(async (req, res) => {
