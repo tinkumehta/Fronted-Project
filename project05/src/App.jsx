@@ -8,7 +8,8 @@ function App() {
 
   return (
     <>
-     <h2 className='text-3xl mb-2  gap-2  text-center flex justify-center'>Welcome to e-learing <span className='text-green-500'>Library</span></h2>
+     <h2 className='text-3xl mb-2  gap-2  text-center flex justify-center'>
+      Welcome to e-learing <span className='text-green-500'>Library</span></h2>
      <BooksApi />
     </>
   )

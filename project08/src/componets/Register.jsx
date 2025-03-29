@@ -23,8 +23,11 @@ function Register() {
 
         setLoading(true);
         try {
-            await register(email, password, name);
+          const user =  await register(email, password, name);
+          if (user) {
             navigate('/dashboard');
+          }
+            
         } catch (error) {
             setError(error.message);
         } finally {
@@ -43,6 +46,7 @@ function Register() {
                         <input
                             type="text"
                             value={name}
+                            id={name}
                             placeholder="Name"
                             onChange={(e) => setName(e.target.value)}
                             required
@@ -53,6 +57,8 @@ function Register() {
                             type="email"
                             value={email}
                             placeholder="Email"
+                            id={email}
+                            autoComplete="email"
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
@@ -61,6 +67,7 @@ function Register() {
                         <input
                             type="password"
                             value={password}
+                            id={password}
                             placeholder="Password"
                             onChange={(e) => setPassword(e.target.value)}
                             required
@@ -71,6 +78,7 @@ function Register() {
                             type="password"
                             value={confirmPassword}
                             placeholder="Confirm Password"
+                            id={confirm-password}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
                         />
