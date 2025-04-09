@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 import { register } from '../../appwrite/auth';
 import './Login.css';
 
@@ -10,6 +10,7 @@ function Register() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
    
 
     const handleSubmit = async (e) => {
@@ -24,7 +25,9 @@ function Register() {
         setLoading(true);
         try {
           const user =  await register(email, password, name);
-          
+          if (user) {
+            navigate("/dashboard");
+          }
             
         } catch (error) {
             setError(error.message);
@@ -88,7 +91,9 @@ function Register() {
                         {loading ? 'Creating Account...' : 'Register'}
                     </button>
                 </form>
-
+                <div className="nav-link">
+                    Already have an account ? <Link to="/login">Login</Link>
+                </div>
               
             </div>
         </div>
