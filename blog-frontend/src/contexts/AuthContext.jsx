@@ -5,9 +5,14 @@ import config from "../utlils/config.js"
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const api = axios.create({ baseURL: config.envUrl });
+  
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [user, setUser] = useState(null);
+
+  const api = axios.create({
+    baseURL : config.envUrl,
+    headers : { 'Content-Type' : 'application/json'}
+  })
 
   useEffect(() => {
     if (token) {
@@ -24,12 +29,15 @@ export const AuthProvider = ({ children }) => {
     const res = await api.post('/auth/login', { username, password });
     setToken(res.data.token);
   };
-  const logout = async () => { await api.post('/auth/logout'); setToken(''); setUser(null); };
-  const changePassword = async (oldPassword, newPassword) => { await api.post('/auth/change-password', { oldPassword, newPassword }); logout(); };
+  const logout = async () => { await api.post('/auth/logout'); setToken(''); };
+  const changePassword = async (oldPass, newPass) => {
+    await api.post('/auth/change-password', { oldPassword: oldPass, newPassword: newPass });
+    logout();
+  };
 
   return (
-    <AuthContext.Provider value={{ token, user, register, login, logout, changePassword, api }}>
+    <AuthContext.Provider value={{ token, register, login, logout, changePassword, api }}>
       {children}
     </AuthContext.Provider>
   );
-};
+}

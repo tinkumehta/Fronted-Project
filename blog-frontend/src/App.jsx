@@ -9,7 +9,6 @@ import PostList from './components/PostList';
 import PostForm from './components/PostForm';
 import PostDetail from './components/PostDetail';
 
-
 export default function App() {
   return (
     <AuthProvider>
@@ -19,10 +18,10 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/" element={<PostList />} />
           <Route path="/new" element={<PostForm />} />
-          <Route path="/posts/:id" element={<PostDetail />} />
           <Route path="/edit/:id" element={<PostForm />} />
+          <Route path="/posts/:id" element={<PostDetail />} />
+          <Route path="/" element={<PostList />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
