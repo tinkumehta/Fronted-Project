@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   
   const [token, setToken] = useState(localStorage.getItem('token') || '');
-  const [user, setUser] = useState(null);
+  
 
   const api = axios.create({
     baseURL : config.envUrl,
