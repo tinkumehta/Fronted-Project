@@ -29,7 +29,7 @@ function Login() {
       <form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
         <input
          className='p-2 border rounded'
-         placeholder='Useername'
+         placeholder='Username'
          value={username}
          onChange={(e) => setUsername(e.target.value)}
         />
