@@ -10,6 +10,8 @@ import Login from "./Login"
 import PostCard from "./PostCard"
 import RTE from "./RTE"
 import Container from "./container/Container"
+import PostForm from "./post-form/PostForm"
+import Footer from "./Footer/Footer"
 
 export {
     Button,
@@ -24,5 +26,6 @@ export {
     PostCard,
     RTE,
     Container,
-    
+    PostForm,
+    Footer,
 }
