@@ -10,6 +10,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Routes
+import authRouter from "./router/authRoutes.js"
+import providerRouter from "./router/providerRoutes.js"
+
+
+ app.use("/api/auth", authRouter);
+ app.use("/api/providers", providerRouter);
+
+// http://localhost/8000/api/auth/register
 
 const PORT = process.env.PORT || 8000;
 
