@@ -6,9 +6,10 @@ export default function Providers() {
   const [search, setSearch] = useState('');
 
   const fetchProviders = async () => {
-    const url = search ? `http://localhost:5000/api/providers/search?category=${search}` : `http://localhost:5000/api/providers`;
+    const url = search ? `http://localhost:8000/api/providers/search?category=${search}` : `http://localhost:8000/api/providers`;
     const res = await axios.get(url);
-    setProviders(res.data);
+   // console.log(res.data.data);
+    setProviders(res.data.data);
   };
 
   useEffect(() => {
@@ -18,7 +19,11 @@ export default function Providers() {
   return (
     <div className="p-4">
       <h2 className="text-xl mb-4">Service Providers</h2>
-      <input placeholder="Search category..." value={search} onChange={(e) => setSearch(e.target.value)} className="border p-2 mb-4" />
+      <input 
+       placeholder="Search category..." 
+       value={search} onChange={(e) => setSearch(e.target.value)} 
+       className="border p-2 mb-4" 
+       />
       <ul className="space-y-2">
         {providers.map((p) => (
           <li key={p._id} className="border p-2">
