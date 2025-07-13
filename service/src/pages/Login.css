@@ -1,0 +1,23 @@
+h2{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+ }
+ .section {
+    
+    margin: 50px;
+    
+    border-radius: 10px;
+    outline: none;
+    margin-left: 150px;
+    max-width: 900px;
+    height: 800px;
+   
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+ .section2{
+    max-width: 800px;
+   
+ }

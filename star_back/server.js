@@ -13,10 +13,14 @@ app.use(express.json());
 // Routes
 import authRouter from "./router/authRoutes.js"
 import providerRouter from "./router/providerRoutes.js"
+import testimonialRoutes from './router/testimonialRoutes.js'
+import reviewsRoutes from "./router/reviewRoutes.js"
 
 
  app.use("/api/auth", authRouter);
  app.use("/api/providers", providerRouter);
+ app.use("/api/testimonials", testimonialRoutes);
+ app.use("/api/reviews", reviewsRoutes);
 
 // http://localhost/8000/api/auth/register
 

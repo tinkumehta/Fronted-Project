@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 
 export default function CreateProvider() {
   const [form, setForm] = useState({ name: '', category: '', contact: '', location: '', description: '' });
+ const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,7 +14,8 @@ export default function CreateProvider() {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
-      alert('Provider Created');
+    //  alert('Provider Created');
+      navigate("/")
     } catch (err) {
       alert(err.response.data.message || 'Error');
     }
