@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razorpay Payment</title>
+</head>
+<body>
+    <h1>Razorpay Payment Gateway Integtation</h1>
+    <form id="payment-form">
+        <label for="amount">Amount :</label>
+        <input type="number" id="amount" name="amount" required>
+        <button type="button" onclick="payNow()">Pay Now</button>
+    </form>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script >
+        async function payNow() {
+            const amount = document.getElementById('amount').value;
+
+            // create oreder by calling the server endpoint
+            const response = await fetch('/create-order', {
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify({amount, currency : 'INR', receipt: 'receipt#1', notes : {} })
+            });
+            if (!response.ok) {
+                const text = await response.text();
+                throw new Error('Order creation failed :' + text)
+            }
+            const order = await response.json();
+
+            // open razorpay checkout
+            const options = {
+                key : 'rzp_test_IN654m084QZdsp',  // replace with your razorpay key_id
+                amount : order.amount,
+                currency  : order.currency,
+                name : 'Service connection',
+                description : 'Test Transaction',
+                order_id : order.id,    // this  is the order_id  created in backend 
+                callback_url : 'http://localhost:3000/payment-sucess',
+                prefill : {
+                    name : 'Your name',
+                    email : 'your.email@exmpale.com',
+                    contact : '6201922381'
+                },
+                theme : {
+                    color : '#F37254'
+                },
+
+            // Call signature validate method
+
+            handler:function (response) {
+                fetch('/verify-payment', {
+                    method : 'POST',
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    },
+                    body : JSON.stringify({
+                        razorpay_order_id : response.razorpay_order_id,
+                        razorpay_payment_id : response.razorpay_payment_id,
+                        razorpay_signature : response.razorpay_signature
+                    })
+                }) .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'ok') {
+                        window.location.href = '/payment-success';
+                    } else{
+                        alert('Payment verification failed')
+                    }
+                }) .catch(errror => {
+                    console.error('Error :', errror);
+                    alert('Error verifying payment')
+                });
+            }
+        };
+            const rzp = new Razorpay(options);
+            rzp.open();
+        }
+    </script>
+</body>
+</html>

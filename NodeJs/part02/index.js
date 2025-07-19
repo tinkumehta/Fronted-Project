@@ -1,13 +1,21 @@
 const express = require('express')
+const fs = require('fs')
+const zlib = require('node:zlib')
 
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
-    res.send('Hello word');
-})
-app.get('/a', (req, res) => {
-    res.send('<h2>A </h2>')
+// stream read (sample.txt) -> Zipper -> fs Write
+
+ fs.createReadStream("./sample.txt").pipe(
+    zlib.createGzip().pipe(fs.createWriteStream("./sample.zip"))
+ )
+// stream
+
+app.get("/", (req, res) => {
+    const stream = fs.createReadStream("./sample.txt", "utf-8");
+    stream.on("data" , (chunk) => res.write(chunk));
+    stream.on("end", () => res.end());
 })
 
 app.listen(port, () => {
