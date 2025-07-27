@@ -22,7 +22,7 @@ app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use(express.json());
 
 // Connect MongoDB
-await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/chatApp');
+await mongoose.connect(process.env.MONGO_URI);
 
 // Signup
 app.post('/api/signup', async (req, res) => {

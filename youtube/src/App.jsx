@@ -1,27 +1,24 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './auth/AuthContext';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import DashboardPage from './pages/DashboardPage';
-import PrivateRoute from './routes/PrivateRoute';
+import React,{useEffect, useState} from 'react'
+
+
+import ProtectedRoute from './components/PrivateRoutes';
+import Header from './components/Header/Header';
+import Home from './components/Header/Home';
+import Login from './components/Account/Login';
+import Register from './components/Account/Register';
 
 export default function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <DashboardPage />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+     <>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+
+      </Routes>
+      {/* <Footer /> */}
+     </>
   );
 }
