@@ -28,7 +28,7 @@ export const AuthContext = createContext();
         const res = await axios.post('/api/v1/users/register', formData, {
             headers : { 'Content-Type' : 'multipart/form-data'},
         });
-        localStorage.setItem('token',res.data.data.token);
+      //  localStorage.setItem('token',res.data.data.token);
         await getCurrentUser();
     };
 

@@ -14,6 +14,8 @@ function Header() {
       </div>
     <nav className="flex items-center gap-6 text-gray-700 font-medium">
       <Link to="/" className="hover:text-purple-600 transition">Home</Link>
+      <Link to="/tweet" className="hover:text-purple-600 transition">Tweet</Link>
+      <Link to="/alltweet" className="hover:text-purple-600 transition">All Tweet</Link>
 
       {user ? (
         <div className="flex gap-4 items-center">
