@@ -9,6 +9,7 @@ import Login from './components/Account/Login';
 import Register from './components/Account/Register';
 import Hometweet from './components/Pages/Hometweet';
 import AllTweet from './components/Pages/AllTweet';
+import Footer from './components/Header/Footer';
 
 export default function App() {
   return (
@@ -31,7 +32,7 @@ export default function App() {
         element={ <AllTweet />}
         />
       </Routes>
-      {/* <Footer /> */}
+     <Footer />
      </>
   );
 }

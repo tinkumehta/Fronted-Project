@@ -9,7 +9,7 @@ dayjs.extend(relativeTime);
 const AllTweets = () => {
   const [tweets, setTweets] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  
 
   useEffect(() => {
     const fetchAllTweets = async () => {
@@ -40,14 +40,17 @@ const AllTweets = () => {
 const TweetCard = ({ tweet }) => {
   
     const [likesCount, setLikesCount] = useState(tweet.likesCount || 0);
-  const [isLiked, setIsLiked] = useState(tweet.isLiked || false);
+    const [isLiked, setIsLiked] = useState(tweet.isLiked || false);
+
+    const [animate, setAnimate] = useState(false);
 
   const handleLikeToggle = async () => {
     try {
       const res = await axios.post(`/api/v1/likes/toggle/t/${tweet._id}`);
       const liked = res.data.data.likedBy;
-      console.log(liked);
-      
+    //  console.log(liked);
+      setAnimate(true);
+      setTimeout(() => setAnimate(false), 300);
       // Update UI based on toggle response
       setIsLiked(liked);
       setLikesCount((prev) => (liked ? prev + 1 : prev - 1));
@@ -79,11 +82,12 @@ const TweetCard = ({ tweet }) => {
       <div className="flex items-center gap-4 text-sm">
         <button
           onClick={handleLikeToggle}
-          className={`flex items-center gap-1 ${
+          className={`flex items-center gap-1 transition-all duration-300 ${
             isLiked ? "text-red-500" : "text-gray-600 hover:text-red-500"
-          }`}
+          } ${animate ? "scale-125" : "scale-100"}`}
         >
-          {isLiked ? "❤️" : "🤍"} {likesCount}
+          <span className="text-xl">{isLiked ?  "❤️" : "🤍"}</span>
+           {likesCount}
         </button>
       </div>
     </div>
