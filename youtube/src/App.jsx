@@ -14,7 +14,7 @@ export default function App() {
      <>
       <Header />
       <Routes>
-        <Route path='/' element={<Home />} />
+        {/* <Route path='/' element={<Home />} /> */}
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
        <Route 
@@ -26,7 +26,7 @@ export default function App() {
        }
        />
        <Route
-        path='/alltweet'
+        path='/'
         element={
           <ProtectedRoute>
              <AllTweet />

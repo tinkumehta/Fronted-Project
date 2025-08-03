@@ -44,17 +44,17 @@ function Header() {
           <Link to="/tweet" className='text-sm/6 font-semibold text-gray-900'>
           Tweet
           </Link>
-          <Link to="/alltweet" className='text-sm/6 font-semibold text-gray-900'>
-          All Tweet
-          </Link>
+          
          
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             {user ? (
                 <div className="flex gap-4 items-center">
+                  <button>
                 <img
                  src={user.avatar} alt="avatar"
                   className='w-12 h-10 rounded-full'/>
+                  </button>
                   <span className='font-semibold italic gap-3'>{user.fullName}</span>
                   <button onClick={logout} className='cursor-pointer m-3'>Logout</button>
                 </div>
@@ -102,11 +102,7 @@ function Header() {
                 >
                   Tweet
                 </Link>
-                <Link to="/alltweet"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  All Tweet
-                </Link>
+                
                 
               </div>
               <div className="py-6">
@@ -114,7 +110,7 @@ function Header() {
                     <div className="flex gap-4 items-center">
                 <img src={user.avatar} alt="avatar"
                  className="w-10 h-9 rounded-full"/>
-                <span className='flex font-bold'>{user.username}</span>
+                <span className='flex  font-bold'>{user.username}</span>
                 <button onClick={logout} className='flex items-center hover:bg-gray-50 font-bold cursor-pointer'>Logout</button>
              </div>
                 ) : (
