@@ -37,6 +37,22 @@ const userSchema = new Schema(
         refreshToken : {
             type : String
         },
+        bio : {
+            type : String,
+            default : '',
+        },
+        followers : [
+            {
+                type  : mongoose.Types.ObjectId,
+                ref : "User",
+            }
+        ],
+        following : [
+            {
+                type  : mongoose.Types.ObjectId,
+                ref : "User",
+            }
+        ],
         watchHistory : [
             {
             type : mongoose.Types.ObjectId,

@@ -10,7 +10,12 @@ import {
     updateCoverImage,
     updateUserAvatar,
     getUserChannelProfile,
-    getWatchHistory
+    getWatchHistory,
+    followUser,
+    getFollowersFollowing,
+    unfollowUser,
+    searchUser,
+    suggestionUser
 } from "../controllers/user.controller.js"
 import {upload} from "../middlewares/multer.middlewares.js"
 import {verifyJWT} from "../middlewares/auth.middlewares.js"
@@ -45,5 +50,12 @@ router.route("/cover-image").patch(verifyJWT, upload.single("coverImage"), updat
 
 router.route("/c/:username").get(verifyJWT, getUserChannelProfile)
 router.route("/history").get(verifyJWT, getWatchHistory)
+
+router.route("/follow/:id").post(verifyJWT, followUser);
+router.route("/unfollow/:id").post(verifyJWT, unfollowUser);
+router.route("/follows/:id").get(getFollowersFollowing);
+
+router.route("/search").get(verifyJWT, searchUser);
+router.route("/suggestions").get(verifyJWT, suggestionUser);
 
 export default router

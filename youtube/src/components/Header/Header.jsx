@@ -44,6 +44,9 @@ function Header() {
           <Link to="/tweet" className='text-sm/6 font-semibold text-gray-900'>
           Tweet
           </Link>
+          <Link to="/search" className='text-sm/6 font-semibold text-gray-900'>
+          Search
+          </Link>
           
          
         </PopoverGroup>
@@ -101,6 +104,11 @@ function Header() {
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
                   Tweet
+                </Link>
+                <Link to="/search"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                >
+                  Search
                 </Link>
                 
                 

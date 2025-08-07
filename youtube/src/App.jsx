@@ -7,6 +7,7 @@ import {
   Home, Header, Login, 
   Register, Hometweet, 
   AllTweet, Footer} from './components';
+  import SearchUsers from './components/Account/SearchUser';
 
 
 export default function App() {
@@ -22,6 +23,14 @@ export default function App() {
          element={
         <ProtectedRoute>
           <Hometweet />
+        </ProtectedRoute>
+       }
+       />
+       <Route 
+        path='/search'
+         element={
+        <ProtectedRoute>
+          <SearchUsers />
         </ProtectedRoute>
        }
        />
