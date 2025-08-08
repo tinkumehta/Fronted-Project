@@ -13,7 +13,8 @@ function Header() {
    const {user, logout, loading} = useContext(AuthContext);
     if (loading) return null;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+ //console.log(user._id);
+ 
   return (
     <header className="bg-white">
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
@@ -46,6 +47,12 @@ function Header() {
           </Link>
           <Link to="/search" className='text-sm/6 font-semibold text-gray-900'>
           Search
+          </Link>
+          <Link to="/profile" className='text-sm/6 font-semibold text-gray-900'>
+          Profile
+          </Link>
+          <Link to="/suggestions" className='text-sm/6 font-semibold text-gray-900'>
+          Suggestions
           </Link>
           
          

@@ -24,6 +24,10 @@ export const AuthContext = createContext();
         }
     };
 
+    const refreshUser = async () => {
+       await getCurrentUser();
+    }
+
     const register = async (formData) => {
         const res = await axios.post('/api/v1/users/register', formData, {
             headers : { 'Content-Type' : 'multipart/form-data'},
@@ -65,7 +69,7 @@ export const AuthContext = createContext();
     }, []);
 
     return (
-        <AuthContext.Provider value={{loading, login, register, logout, user}}>
+        <AuthContext.Provider value={{loading, SetUser,refreshUser, login, register, logout, user}}>
             {children}
         </AuthContext.Provider>
     )
