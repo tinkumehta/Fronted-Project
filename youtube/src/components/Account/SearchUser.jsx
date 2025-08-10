@@ -13,6 +13,8 @@ export default function SearchUser() {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       });
       setResults(res.data.data);
+     // console.log(res.data.data);
+      
     } catch (err) {
       console.error("Search error", err);
     }
