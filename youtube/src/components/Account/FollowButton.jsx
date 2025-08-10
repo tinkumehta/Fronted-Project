@@ -3,13 +3,22 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function FollowButton({ targetUserId, onFollowChange }) {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, SetUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
 
   const isFollowing = user?.following?.includes(targetUserId) || false;
 
   const handleClick = async () => {
     if (!user) return;
+
+    // Optimistic update
+    SetUser(prev => ({
+      ...prev,
+      following: isFollowing
+        ? prev.following.filter(id => id !== targetUserId)
+        : [...prev.following, targetUserId],
+    }));
+    onFollowChange?.(!isFollowing);
     setLoading(true);
 
     try {
@@ -17,27 +26,21 @@ export default function FollowButton({ targetUserId, onFollowChange }) {
         await axios.post(`/api/v1/users/unfollow/${targetUserId}`, {}, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
         });
-
-        const updated = {
-          ...user,
-          following: user.following.filter(id => id !== targetUserId)
-        };
-        setUser(updated);
-        onFollowChange?.(false);
       } else {
         await axios.post(`/api/v1/users/follow/${targetUserId}`, {}, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
         });
-
-        const updated = {
-          ...user,
-          following: [...user.following, targetUserId]
-        };
-        setUser(updated);
-        onFollowChange?.(true);
       }
     } catch (err) {
       console.error("Follow/Unfollow error", err);
+      // If API fails, revert state
+      SetUser(prev => ({
+        ...prev,
+        following: isFollowing
+          ? [...prev.following, targetUserId]
+          : prev.following.filter(id => id !== targetUserId),
+      }));
+      onFollowChange?.(isFollowing);
     } finally {
       setLoading(false);
     }
@@ -56,8 +59,9 @@ export default function FollowButton({ targetUserId, onFollowChange }) {
       {loading
         ? "Processing..."
         : isFollowing
-        ? "Unfollow" // action text instead of status
+        ? "Unfollow"
         : "Follow"}
     </button>
   );
 }
+
