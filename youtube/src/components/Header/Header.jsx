@@ -7,7 +7,8 @@ import {
   PopoverGroup,
 } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon,} from '@heroicons/react/24/outline'
-import logo from "../../assets/logo.png"
+import logo from "../../assets/log.png"
+
 
 function Header() {
    const {user, logout, loading} = useContext(AuthContext);
@@ -24,7 +25,7 @@ function Header() {
             <img
               alt=""
               src={logo}
-              className="h-10 w-auto"
+              className="h-12 w-23"
             />
           </a>
         </div>
@@ -42,9 +43,7 @@ function Header() {
           <Link to="/" className='text-sm/6 font-semibold text-gray-900'>
           Home
           </Link>
-          <Link to="/tweet" className='text-sm/6 font-semibold text-gray-900'>
-          Tweet
-          </Link>
+          
           <Link to="/search" className='text-sm/6 font-semibold text-gray-900'>
           Search
           </Link>
@@ -60,11 +59,7 @@ function Header() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             {user ? (
                 <div className="flex gap-4 items-center">
-                  <button>
-                <img
-                 src={user.avatar} alt="avatar"
-                  className='w-12 h-10 rounded-full'/>
-                  </button>
+                 
                   <span className='font-semibold italic gap-3'>{user.fullName}</span>
                   <button onClick={logout} className='cursor-pointer m-3'>Logout</button>
                 </div>
@@ -107,11 +102,7 @@ function Header() {
                 >
                   Home
                 </Link>
-                <Link to="/tweet"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Tweet
-                </Link>
+               
                 <Link to="/search"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >

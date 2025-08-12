@@ -1,5 +1,4 @@
 import React,{useContext, useEffect, useState} from 'react'
-import { AuthContext } from '../../context/AuthContext'
 import axios from 'axios'
 
 function TweetForm({onTweet, editingTweet, onCancel}) {
@@ -23,7 +22,7 @@ function TweetForm({onTweet, editingTweet, onCancel}) {
             }
             setContent('');
         } catch (error) {
-            console.error("Tweet error", error);
+            console.error("Tweet error" || error);
         }
     };
 

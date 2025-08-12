@@ -4,8 +4,8 @@ import React,{useEffect, useState} from 'react'
 
 import ProtectedRoute from './components/PrivateRoutes';
 import { 
-  Home, Header, Login, 
-  Register, Hometweet, 
+   Header, Login, 
+  Register,  
   AllTweet, Footer} from './components';
   import SearchUsers from './components/Account/SearchUser';
   import SuggestedUsers from './components/Account/SuggestedUser';
@@ -21,14 +21,7 @@ export default function App() {
         {/* <Route path='/' element={<Home />} /> */}
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-       <Route 
-        path='/tweet'
-         element={
-        <ProtectedRoute>
-          <Hometweet />
-        </ProtectedRoute>
-       }
-       />
+      
        <Route 
         path='/search'
          element={
