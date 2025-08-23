@@ -47,7 +47,7 @@ const register = asyncHandler (async (req, res) => {
     })
 
     if (existedUser) {
-        throw new ApiError(409, "User is allready exits")
+        throw new ApiError(400, "User is allready exits")
     }
 
     const avatarLocalPath = req.files?.avatar[0]?.path;
@@ -75,7 +75,7 @@ const register = asyncHandler (async (req, res) => {
         email,
         password,
         avatar : avatar.url,
-        coverImage : coverImage.url || "",
+        coverImage : coverImage?.url || "",
     })
 
     const createdUser = await User.findById(user._id).select("-password -refreshToken")
